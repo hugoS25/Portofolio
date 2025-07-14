@@ -268,4 +268,226 @@
       color: #666;
     }
     .insta-stats {
-      displa
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 20px;
+      background: #f0f8ff;
+      font-weight: 600;
+      color: #0056b3;
+    }
+    .insta-stats div {
+      text-align: center;
+    }
+    .insta-stats div span {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 2px;
+    }
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 0.9rem;
+      color: #777;
+      background: #f0f4f8;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Fond animé - particules simples */
+    canvas#background-canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background-canvas"></canvas>
+
+  <header>
+    <div class="logo" aria-label="BoostCom logo">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M6 12L10 16L18 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      BoostCom
+    </div>
+    <nav>
+      <a href="#packs">Packs</a>
+      <a href="#gestion">Gestion Réseaux</a>
+      <a href="#instagram">Instagram</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" role="banner">
+      <h1>BoostCom</h1>
+      <p>Votre partenaire pour la communication et la gestion de vos réseaux sociaux.</p>
+      <a href="#packs" class="cta-btn">Découvrez nos packs</a>
+    </section>
+
+    <section id="packs" role="region" aria-labelledby="packs-title">
+      <h2 id="packs-title">Packs</h2>
+      <p>Des solutions adaptées à vos besoins, à prix compétitifs.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Pack</th>
+            <th>Facebook</th>
+            <th>Instagram</th>
+            <th>Twitter</th>
+            <th>LinkedIn</th>
+            <th>Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Basique</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>29€/mois</td>
+          </tr>
+          <tr>
+            <td>Standard</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✖️</td>
+            <td>49€/mois</td>
+          </tr>
+          <tr class="prix-row">
+            <td>Premium</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>79€/mois</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="gestion" role="region" aria-labelledby="gestion-title">
+      <h2 id="gestion-title">Gestion Réseaux Sociaux</h2>
+      <p>Nous prenons en charge la gestion complète de vos réseaux sociaux pour maximiser votre visibilité et votre engagement.</p>
+    </section>
+
+    <section id="instagram" role="region" aria-labelledby="instagram-title">
+      <h2 id="instagram-title">Instagram</h2>
+      <p class="desc">Boostez votre Instagram avec nos services personnalisés.</p>
+      <div class="insta-profile" tabindex="0" aria-label="Profil Instagram de Jean Dupont">
+        <div class="insta-header">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Photo de profil de Jean Dupont" />
+          <div class="insta-info">
+            <h3>Jean Dupont</h3>
+            <p>@jeandupont</p>
+          </div>
+        </div>
+        <div class="insta-stats">
+          <div><span>1.5k</span>Abonnés</div>
+          <div><span>120</span>Publications</div>
+          <div><span>200</span>Abonnements</div>
+        </div>
+      </div>
+      <div class="insta-profile" tabindex="0" aria-label="Profil Instagram de Marie Curie">
+        <div class="insta-header">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Photo de profil de Marie Curie" />
+          <div class="insta-info">
+            <h3>Marie Curie</h3>
+            <p>@mariecurie</p>
+          </div>
+        </div>
+        <div class="insta-stats">
+          <div><span>2.3k</span>Abonnés</div>
+          <div><span>200</span>Publications</div>
+          <div><span>180</span>Abonnements</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 BoostCom - Tous droits réservés.
+  </footer>
+
+  <script>
+    // Particules simples pour fond animé
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function init() {
+      resize();
+      particles = [];
+      for (let i = 0; i < 100; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+        });
+      }
+    }
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
+        ctx.shadowBlur = 5;
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      connectParticles();
+    }
+
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / 100})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function update() {
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx = -p.vx;
+        if (p.y < 0 || p.y > height) p.vy = -p.vy;
+      });
+    }
+
+    function animate() {
+      draw();
+      update();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+      init();
+    });
+
+    init();
+    animate();
+  </script>
+</body>
+</html>
