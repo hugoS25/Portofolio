@@ -1,144 +1,271 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BoostCom - Communication Digitale</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-    <!-- Fond bulles animé -->
-    <div id="bubble-bg"></div>
-
-    <header>
-        <div class="logo">BoostCom</div>
-        <nav>
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#insta">Pages Instagram</a></li>
-                <li><a href="#packs">Packs</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="accueil" class="section">
-            <h1>BoostCom</h1>
-            <p>Votre partenaire pour améliorer votre visibilité digitale.</p>
-        </section>
-
-        <section id="services" class="section">
-            <h2>Nos Services</h2>
-            <p>Gestion de réseaux sociaux et création de sites internet professionnels.</p>
-        </section>
-
-        <section id="insta" class="section">
-            <h2>Exemples de pages Instagram</h2>
-            <p>Découvrez des profils Instagram professionnels créés pour booster la visibilité.</p>
-            <div class="insta-gallery">
-                <div class="insta-card">
-                    <img src="images/insta1.png" alt="Page Instagram 1" />
-                    <h3>PhotoPro</h3>
-                    <p>Photographie professionnelle et artistique.</p>
-                </div>
-                <div class="insta-card">
-                    <img src="images/insta2.png" alt="Page Instagram 2" />
-                    <h3>UrbanVibes</h3>
-                    <p>Style urbain et lifestyle moderne.</p>
-                </div>
-                <div class="insta-card">
-                    <img src="images/insta3.png" alt="Page Instagram 3" />
-                    <h3>NatureSnap</h3>
-                    <p>Photos naturelles et paysages inspirants.</p>
-                </div>
-                <div class="insta-card">
-                    <img src="images/insta4.png" alt="Page Instagram 4" />
-                    <h3>CondensationArt</h3>
-                    <p>Effets de condensation et ambiance mystérieuse.</p>
-                </div>
-                <div class="insta-card">
-                    <img src="images/insta5.png" alt="Page Instagram 5" />
-                    <h3>LightPlay</h3>
-                    <p>Jeux de lumières et compositions créatives.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="packs" class="section">
-            <h2>Nos Packs</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pack</th>
-                        <th>Gestion réseaux sociaux</th>
-                        <th>Création site web</th>
-                        <th>Prix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Starter</td>
-                        <td>3 posts / semaine</td>
-                        <td>Site vitrine simple</td>
-                        <td>300€ / mois</td>
-                    </tr>
-                    <tr>
-                        <td>Pro</td>
-                        <td>5 posts / semaine + stories</td>
-                        <td>Site web personnalisé</td>
-                        <td>600€ / mois</td>
-                    </tr>
-                    <tr>
-                        <td>Premium</td>
-                        <td>Posts quotidiens + gestion complète</td>
-                        <td>Site e-commerce + SEO</td>
-                        <td>1200€ / mois</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="contact" class="section">
-            <h2>Contactez-nous</h2>
-            <form>
-                <input type="text" name="nom" placeholder="Nom" required />
-                <input type="text" name="prenom" placeholder="Prénom" required />
-                <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-                <button type="submit">Envoyer</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 BoostCom - Tous droits réservés</p>
-    </footer>
-
-    <script>
-        const bubbleContainer = document.getElementById('bubble-bg');
-
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
-
-            const size = Math.random() * 60 + 20; // 20px à 80px
-            bubble.style.width = size + 'px';
-            bubble.style.height = size + 'px';
-
-            bubble.style.left = Math.random() * 100 + 'vw';
-
-            bubble.style.animationDuration = (Math.random() * 10 + 5) + 's';
-            bubble.style.animationDelay = (Math.random() * 10) + 's';
-
-            bubbleContainer.appendChild(bubble);
-
-            setTimeout(() => {
-                bubble.remove();
-            }, 15000);
-        }
-
-        setInterval(createBubble, 400);
-    </script>
-</body>
-</html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BoostCom - Communication & Réseaux Sociaux</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset et base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; 
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    /* Fond animé */
+    #background-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: linear-gradient(135deg, #007bff 0%, #00bfff 100%);
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #0056b3;
+    }
+    header {
+      background: rgba(0, 123, 255, 0.9);
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 10;
+      backdrop-filter: saturate(180%) blur(8px);
+      -webkit-backdrop-filter: saturate(180%) blur(8px);
+    }
+    header .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* Logo svg style */
+    header .logo svg {
+      height: 30px;
+      width: 30px;
+      fill: white;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 18px;
+      background: white;
+      color: #007bff;
+      box-shadow: 0 2px 8px rgb(0 123 255 / 0.2);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border: none;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+    }
+    nav a:hover {
+      background: #e6f0ff;
+      color: #004a99;
+      box-shadow: 0 4px 12px rgb(0 123 255 / 0.4);
+    }
+    main {
+      max-width: 1100px;
+      margin: 30px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+    section {
+      margin-bottom: 60px;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgb(0 123 255 / 0.15);
+      position: relative;
+      z-index: 10;
+    }
+    h1, h2, h3 {
+      color: #007bff;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    p {
+      color: #444;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: transparent; /* on garde le fond animé visible */
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgb(0 123 255 / 0.5);
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 10;
+    }
+    #hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+    #hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      text-shadow: 0 0 6px rgba(0,0,0,0.3);
+    }
+    #hero a.cta-btn {
+      display: inline-block;
+      background: white;
+      color: #007bff;
+      font-weight: 700;
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      border-radius: 40px;
+      box-shadow: 0 4px 15px rgb(0 123 255 / 0.5);
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+    #hero a.cta-btn:hover {
+      background: #e6f0ff;
+    }
+    /* Packs Table */
+    #packs h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    #packs p {
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 30px;
+    }
+    #packs table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 1rem;
+    }
+    #packs thead tr {
+      background: #007bff;
+      color: white;
+      text-align: center;
+    }
+    #packs thead th {
+      padding: 15px;
+      font-weight: 600;
+    }
+    #packs tbody td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    #packs tbody tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    #packs tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #333;
+    }
+    /* Ligne prix */
+    #packs tbody tr.prix-row td {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0056b3;
+      background: #e6f0ff;
+    }
+    /* Gestion Réseaux sociaux */
+    #gestion p {
+      max-width: 750px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #444;
+    }
+    /* Instagram Section */
+    #instagram > h2 {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+    #instagram p.desc {
+      display: inline-block;
+      max-width: 400px;
+      font-weight: 500;
+      color: #666;
+      font-size: 1rem;
+      vertical-align: middle;
+      margin-top: 0;
+    }
+    #instagram {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 25px;
+    }
+    .insta-profile {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgb(0 123 255 / 0.15);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+    .insta-profile:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgb(0 123 255 / 0.3);
+    }
+    .insta-header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      gap: 15px;
+    }
+    .insta-header img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #007bff;
+    }
+    .insta-info {
+      flex-grow: 1;
+    }
+    .insta-info h3 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #007bff;
+    }
+    .insta-info p {
+      margin: 3px 0 0 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .insta-stats {
+      displa
